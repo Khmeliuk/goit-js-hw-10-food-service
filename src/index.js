@@ -6,6 +6,7 @@ const bodyRef = document.body;
 const menuListRef = document.querySelector('.js-menu');
 const sweetchControleRef = document.querySelector('.theme-switch__toggle');
 
+const menuItem = createMenu(menu);
 const Theme = {
   LIGHT: 'light-theme',
   DARK: 'dark-theme',
@@ -26,24 +27,14 @@ function changeTheme(checkedValue) {
 function onChangeThem(e) {
     localStorage.setItem('checked', e.target.checked);
   checkedValue = JSON.parse(localStorage.getItem('checked'));
-  console.log('checked',checkedValue);
-   
   changeTheme(checkedValue);
-    
  }
-
-
-
-
-sweetchControleRef.addEventListener('click', onChangeThem);
 
 function createMenu(menu) {
   return menu.map(dish).join('');
 }
-const menuItem = createMenu(menu);
-menuListRef.insertAdjacentHTML('afterbegin', menuItem);
 
-// console.log(dish(menu[1]));
-// console.log(dish(menu[0]));
-console.log(menuListRef);
+menuListRef.insertAdjacentHTML('afterbegin', menuItem);
+sweetchControleRef.addEventListener('click', onChangeThem);
+
 
