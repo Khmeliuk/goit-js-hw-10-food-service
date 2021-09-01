@@ -1,8 +1,11 @@
 import './sass/main.scss';
-// import smenu from './partials/menu.json';
-// import sdish from'./templates/dish.hbs';
+import menu from './partials/menu.json';
+import dish from './templates/dish.hbs';
+
 const bodyRef = document.body;
+const menuListRef = document.querySelector('.js-menu');
 const sweetchControleRef = document.querySelector('.theme-switch__toggle');
+
 const Theme = {
   LIGHT: 'light-theme',
   DARK: 'dark-theme',
@@ -31,6 +34,16 @@ function onChangeThem(e) {
 
 
 
+
 sweetchControleRef.addEventListener('click', onChangeThem);
 
+function createMenu(menu) {
+  return menu.map(dish).join('');
+}
+const menuItem = createMenu(menu);
+menuListRef.insertAdjacentHTML('afterbegin', menuItem);
+
+// console.log(dish(menu[1]));
+// console.log(dish(menu[0]));
+console.log(menuListRef);
 
