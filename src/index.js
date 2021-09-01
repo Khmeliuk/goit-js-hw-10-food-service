@@ -13,21 +13,23 @@ const Theme = {
 };
 let checkedValue = JSON.parse(localStorage.getItem('checked'));
 sweetchControleRef.checked = checkedValue;
-bodyRef.classList.add(changeTheme(checkedValue));
+changeTheme(checkedValue);
 
 function changeTheme(checkedValue) {
-  if (checkedValue){
-    bodyRef.classList.add(Theme.DARK);
-    bodyRef.classList.remove(Theme.LIGHT);
-  }
-  else{bodyRef.classList.add(Theme.LIGHT);
-    bodyRef.classList.remove(Theme.DARK);}
+  if (checkedValue) 
+     addRemoveClass(Theme.DARK,Theme.LIGHT)
+  
+  else
+     addRemoveClass(Theme.LIGHT,Theme.DARK);
 }
-
+function addRemoveClass(addClass, removeClass){
+   bodyRef.classList.add(addClass);
+    bodyRef.classList.remove(removeClass);
+}
 function onChangeThem(e) {
     localStorage.setItem('checked', e.target.checked);
   checkedValue = JSON.parse(localStorage.getItem('checked'));
-  changeTheme(checkedValue);
+  changeTheme(e.target.checked);
  }
 
 function createMenu(menu) {
@@ -36,5 +38,3 @@ function createMenu(menu) {
 
 menuListRef.insertAdjacentHTML('afterbegin', menuItem);
 sweetchControleRef.addEventListener('click', onChangeThem);
-
-
